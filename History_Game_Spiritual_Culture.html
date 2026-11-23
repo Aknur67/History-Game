@@ -1,0 +1,668 @@
+
+<!DOCTYPE html>
+<html lang="kk">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Мәдениет мұрасы</title>
+
+<style>
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background: #101a27;
+    color: #f8f3e9;
+    min-height: 100vh;
+}
+
+.container {
+    width: min(950px, 94%);
+    margin: auto;
+    padding: 35px 0;
+}
+
+header {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+header h1 {
+    color: #e8b85c;
+    font-size: clamp(28px, 5vw, 45px);
+    letter-spacing: 2px;
+}
+
+header p {
+    color: #ccc;
+    margin-top: 10px;
+}
+
+.panel {
+    background: #1c2a3b;
+    border: 1px solid #35465b;
+    border-radius: 18px;
+    padding: 30px;
+}
+
+h2 {
+    color: #e8b85c;
+    margin-bottom: 20px;
+}
+
+.hidden {
+    display: none !important;
+}
+
+.primary-btn {
+    background: #d9a441;
+    color: #172130;
+    border: none;
+    padding: 14px 30px;
+    border-radius: 10px;
+    font-size: 17px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.primary-btn:hover {
+    background: #f0c36b;
+}
+
+.intro {
+    text-align: center;
+}
+
+.intro p {
+    line-height: 1.8;
+    color: #d0d5dc;
+    margin-bottom: 20px;
+}
+
+.categories {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 15px;
+    margin: 25px 0;
+}
+
+.category {
+    background: #26384d;
+    padding: 20px 10px;
+    border-radius: 12px;
+    border-bottom: 3px solid #e8b85c;
+}
+
+.emoji {
+    font-size: 35px;
+}
+
+.category h3 {
+    color: #f2c875;
+    margin: 10px 0;
+    font-size: 16px;
+}
+
+.category p {
+    font-size: 14px;
+}
+
+.game-info {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-bottom: 20px;
+    color: #e8b85c;
+    font-weight: bold;
+}
+
+.progress-bar {
+    height: 9px;
+    background: #40516a;
+    border-radius: 10px;
+    overflow: hidden;
+    margin-bottom: 25px;
+}
+
+.progress {
+    height: 100%;
+    background: #e8b85c;
+    transition: width 0.3s;
+}
+
+.question-number {
+    color: #e8b85c;
+    margin-bottom: 12px;
+    font-weight: bold;
+}
+
+.question {
+    font-size: clamp(20px, 3vw, 28px);
+    line-height: 1.5;
+    margin-bottom: 25px;
+}
+
+.answers {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 14px;
+}
+
+.answer-btn {
+    background: #2a3c52;
+    color: white;
+    border: 2px solid #455a72;
+    border-radius: 12px;
+    padding: 18px;
+    text-align: left;
+    font-size: 16px;
+    min-height: 70px;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.answer-btn:hover:not(:disabled) {
+    background: #3a506b;
+    border-color: #e8b85c;
+}
+
+.answer-btn:disabled {
+    cursor: default;
+}
+
+.answer-btn.correct {
+    background: #176b4b;
+    border-color: #48d69a;
+}
+
+.answer-btn.wrong {
+    background: #813b42;
+    border-color: #ff7b7b;
+}
+
+.feedback {
+    margin-top: 22px;
+    padding: 18px;
+    border-radius: 12px;
+    line-height: 1.7;
+}
+
+.feedback.success {
+    background: #176b4b;
+}
+
+.feedback.failure {
+    background: #813b42;
+}
+
+.next-area {
+    text-align: right;
+    margin-top: 25px;
+}
+
+.result-title {
+    text-align: center;
+    font-size: 32px;
+    color: #e8b85c;
+    margin-bottom: 25px;
+}
+
+.final-score {
+    text-align: center;
+    font-size: 35px;
+    margin: 25px 0;
+    color: #e8b85c;
+}
+
+.final-message {
+    text-align: center;
+    color: #ddd;
+    line-height: 1.7;
+    margin-bottom: 25px;
+}
+
+footer {
+    text-align: center;
+    color: #8794a6;
+    margin-top: 25px;
+}
+
+@media(max-width: 650px) {
+    .categories {
+        grid-template-columns: 1fr;
+    }
+
+    .answers {
+        grid-template-columns: 1fr;
+    }
+
+    .panel {
+        padding: 18px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+<header>
+    <h1>МӘДЕНИЕТ МҰРАСЫ</h1>
+    <p>Қазақтардың рухани мәдениеті туралы викторина</p>
+</header>
+
+<!-- HOME -->
+
+<section id="home" class="panel intro">
+
+    <h2>Қош келдіңіздер!</h2>
+
+    <p>
+        Қазақтардың рухани мәдениеті туралы білімдеріңізді
+        15 сұрақ арқылы тексеріңіздер!
+    </p>
+
+    <div class="categories" style="grid-template-columns: 1fr; max-width: 320px; margin: 25px auto;">
+        <div class="category">
+            <div class="emoji">🎼</div>
+            <h3>Қазақтардың рухани мәдениеті</h3>
+            <p>15 сұрақ</p>
+        </div>
+    </div>
+
+    <p>15 сұрақ | Әр дұрыс жауапқа 10 ұпай</p>
+
+    <button class="primary-btn" onclick="startGame()">
+        Ойынды бастау
+    </button>
+
+</section>
+
+
+<!-- QUIZ -->
+
+<section id="game" class="panel hidden">
+
+    <div class="game-info">
+        <span id="categoryName"></span>
+        <span id="questionCount"></span>
+        <span id="scoreDisplay">Ұпай: 0</span>
+    </div>
+
+    <div class="progress-bar">
+        <div class="progress" id="progress"></div>
+    </div>
+
+    <div class="question-number" id="questionNumber"></div>
+
+    <h2 class="question" id="questionText"></h2>
+
+    <div class="answers" id="answers"></div>
+
+    <div id="feedback" class="hidden feedback"></div>
+
+    <div class="next-area">
+        <button id="nextButton"
+                class="primary-btn hidden"
+                onclick="nextQuestion()">
+            Келесі сұрақ →
+        </button>
+    </div>
+
+</section>
+
+
+<!-- RESULTS -->
+
+<section id="results" class="panel hidden">
+
+    <h2 class="result-title">🏆 Ойын аяқталды!</h2>
+
+    <div class="final-score" id="finalScore"></div>
+
+    <div class="final-message" id="finalMessage"></div>
+
+    <div style="text-align:center">
+        <button class="primary-btn" onclick="restartGame()">
+            Қайта ойнау
+        </button>
+    </div>
+
+</section>
+
+<footer>
+    «Мәдениет мұрасы» | Қазақтардың рухани мәдениеті
+</footer>
+
+</div>
+
+
+<script>
+
+// QUESTIONS
+
+const questions = [
+
+    {
+        category: "Қазақтардың рухани мәдениеті",
+        question: "Қазақ халқының ауыз әдебиетіне қайсысы жатады?",
+        answers: ["Киіз үй", "Ертегілер", "Ер-тұрман", "Зергерлік бұйымдар"],
+        correct: 1,
+        explanation: "Ертегілер – ұрпақтан ұрпаққа ауызша жеткен халық ауыз әдебиетінің бір түрі."
+    },
+    {
+        category: "Қазақтардың рухани мәдениеті",
+        question: "Қазақ халқының ең кең тараған дәстүрлі музыкалық аспабы қандай?",
+        answers: ["Скрипка", "Домбыра", "Фортепиано", "Гитара"],
+        correct: 1,
+        explanation: "Домбыра – қазақ халқының музыкалық мәдениетінің маңызды символдарының бірі."
+    },
+    {
+        category: "Қазақтардың рухани мәдениеті",
+        question: "Қорқыт ата қай музыкалық аспаппен тығыз байланысты?",
+        answers: ["Қобыз", "Жетіген", "Сазсырнай", "Дауылпаз"],
+        correct: 0,
+        explanation: "Қорқыт ата қобыз өнерімен және күйшілік дәстүрімен байланысты."
+    },
+    {
+        category: "Қазақтардың рухани мәдениеті",
+        question: "Айтыс дегеніміз не?",
+        answers: ["Ат жарысы", "Қолөнер сайысы", "Ақындардың суырыпсалма өлеңмен жарысуы", "Би өнері"],
+        correct: 2,
+        explanation: "Айтыс – екі ақынның өлеңмен сөз сайыстыру өнері."
+    },
+    {
+        category: "Қазақтардың рухани мәдениеті",
+        question: "Қазақ халқының жыршылық дәстүрінің негізгі мазмұны қандай?",
+        answers: ["Тек сауда туралы", "Тарихи оқиғалар, батырлар мен ел өмірі туралы", "Тек ауа райы туралы", "Тек спорт туралы"],
+        correct: 1,
+        explanation: "Жырларда халықтың тарихы, батырлық, елдік және адамгершілік тақырыптары көрініс тапқан."
+    },
+    {
+        category: "Қазақтардың рухани мәдениеті",
+        question: "«Қобыланды батыр» шығармасы қандай жанрға жатады?",
+        answers: ["Мақал-мәтел", "Батырлар жыры", "Тұрмыс-салт жыры", "Жұмбақ"],
+        correct: 1,
+        explanation: "«Қобыланды батыр» – қазақтың батырлық эпостарының бірі."
+    },
+    {
+        category: "Қазақтардың рухани мәдениеті",
+        question: "Жеті ата дәстүрінің негізгі мақсаты қандай?",
+        answers: ["Жер бөлісу", "Туыстық байланысты білу және жақын туыстар арасындағы некеге жол бермеу", "Мал санау", "Жыл мезгілін анықтау"],
+        correct: 1,
+        explanation: "Жеті ата дәстүрі туыстық байланысты сақтауға және некелік қатынастарды реттеуге бағытталған."
+    },
+    {
+        category: "Қазақтардың рухани мәдениеті",
+        question: "«Бесік жыры» қандай мақсатта айтылады?",
+        answers: ["Баланы жұбатып, ұйықтату үшін", "Жеңісті тойлау үшін", "Қонақты қарсы алу үшін", "Егін жинау үшін"],
+        correct: 0,
+        explanation: "Бесік жыры – ананың балаға деген мейірімін білдіретін, оны жұбатып ұйықтатуға арналған ән."
+    },
+    {
+        category: "Қазақтардың рухани мәдениеті",
+        question: "«Жар-жар» дәстүрлі әні қандай жағдайға байланысты орындалады?",
+        answers: ["Тұсаукесерге", "Үйлену тойына", "Бесікке салуға", "Наурыз мерекесіне"],
+        correct: 1,
+        explanation: "«Жар-жар» – үйлену салтында орындалатын дәстүрлі ән."
+    },
+    {
+        category: "Қазақтардың рухани мәдениеті",
+        question: "Қазақтың шешендік сөздері қандай мақсатта қолданылған?",
+        answers: ["Ел басқару, дау шешу және тәрбие беру", "Сауда жасау", "Ән айту", "Мал бағу"],
+        correct: 0,
+        explanation: "Шешендік сөздер ел ішіндегі дауларды шешуге, ақыл-кеңес беруге және өнеге айтуға қызмет еткен."
+    },
+    {
+        category: "Қазақтардың рухани мәдениеті",
+        question: "Құрманғазы Сағырбайұлы кім болған?",
+        answers: ["Ақын-жазушы", "Күйші-композитор", "Сәулетші", "Ғалым-географ"],
+        correct: 1,
+        explanation: "Құрманғазы – қазақтың әйгілі күйші-композиторы."
+    },
+    {
+        category: "Қазақтардың рухани мәдениеті",
+        question: "Қазақ халқының дәстүрлі наным-сенімдерінің бірі қайсы?",
+        answers: ["Тәңіршілдік", "Индуизм", "Синтоизм", "Конфуцийшілдік"],
+        correct: 0,
+        explanation: "Тәңіршілдік – түркі халықтарының көне дүниетанымдық нанымдарының бірі."
+    },
+    {
+        category: "Қазақтардың рухани мәдениеті",
+        question: "Бата беру дәстүрі нені білдіреді?",
+        answers: ["Жақсы тілек пен ізгі ниет білдіруді", "Қоштасуды", "Жарыс өткізуді", "Ән орындауды"],
+        correct: 0,
+        explanation: "Бата – үлкендердің ақ тілегі мен ізгі ниетін білдіретін дәстүр."
+    },
+    {
+        category: "Қазақтардың рухани мәдениеті",
+        question: "Наурыз мерекесі дәстүрлі түрде нені білдіреді?",
+        answers: ["Қыс мезгілінің басталуын", "Көктемгі жаңару мен жаңа жылдың келуін", "Егін жинаудың аяқталуын", "Қысқы аңшылықтың басталуын"],
+        correct: 1,
+        explanation: "Наурыз – көктемгі күн мен түн теңелуімен тұспа-тұс келетін жаңару мерекесі."
+    },
+    {
+        category: "Қазақтардың рухани мәдениеті",
+        question: "Қазақтың дәстүрлі дүниетанымында үлкенді сыйлау нені көрсетеді?",
+        answers: ["Байлықты", "Әдеп пен тәрбиені", "Батырлықты", "Шеберлікті"],
+        correct: 1,
+        explanation: "Үлкенді құрметтеу – қазақ халқының әдеп-ғұрпы мен тәрбиесіндегі маңызды құндылық."
+    }
+
+];
+
+
+// GAME VARIABLES
+
+let currentQuestion = 0;
+let score = 0;
+let answered = false;
+
+
+// START GAME
+
+function startGame() {
+
+    document.getElementById("home").classList.add("hidden");
+
+    document.getElementById("results").classList.add("hidden");
+
+    document.getElementById("game").classList.remove("hidden");
+
+    currentQuestion = 0;
+    score = 0;
+
+    showQuestion();
+}
+
+
+// SHOW QUESTION
+
+function showQuestion() {
+
+    if (currentQuestion >= questions.length) {
+        finishGame();
+        return;
+    }
+
+    answered = false;
+
+    const q = questions[currentQuestion];
+
+    document.getElementById("categoryName").textContent =
+        q.category;
+
+    document.getElementById("questionCount").textContent =
+        `${currentQuestion + 1} / ${questions.length}`;
+
+    document.getElementById("scoreDisplay").textContent =
+        `Ұпай: ${score}`;
+
+    document.getElementById("questionNumber").textContent =
+        `${currentQuestion + 1}-СҰРАҚ`;
+
+    document.getElementById("questionText").textContent =
+        q.question;
+
+    document.getElementById("progress").style.width =
+        `${(currentQuestion / questions.length) * 100}%`;
+
+    document.getElementById("feedback").className =
+        "hidden feedback";
+
+    document.getElementById("nextButton").classList.add("hidden");
+
+    const answersContainer = document.getElementById("answers");
+
+    answersContainer.innerHTML = "";
+
+    q.answers.forEach((answer, index) => {
+
+        const button = document.createElement("button");
+
+        button.className = "answer-btn";
+
+        button.textContent =
+            `${String.fromCharCode(65 + index)}. ${answer}`;
+
+        button.onclick = () => selectAnswer(index);
+
+        answersContainer.appendChild(button);
+
+    });
+
+}
+
+
+// SELECT ANSWER
+
+function selectAnswer(selectedIndex) {
+
+    if (answered) return;
+
+    answered = true;
+
+    const q = questions[currentQuestion];
+
+    const buttons = document.querySelectorAll(".answer-btn");
+
+    const isCorrect = selectedIndex === q.correct;
+
+    buttons.forEach((button, index) => {
+
+        button.disabled = true;
+
+        if (index === q.correct) {
+            button.classList.add("correct");
+        }
+
+        if (index === selectedIndex && !isCorrect) {
+            button.classList.add("wrong");
+        }
+
+    });
+
+    const feedback = document.getElementById("feedback");
+
+    if (isCorrect) {
+
+        score += 10;
+
+        feedback.className = "feedback success";
+
+        feedback.innerHTML =
+            `<strong>✓ Дұрыс жауап! +10 ұпай</strong><br>
+            ${q.explanation}`;
+
+    } else {
+
+        feedback.className = "feedback failure";
+
+        feedback.innerHTML =
+            `<strong>✗ Қате жауап!</strong><br>
+            Дұрыс жауап: ${q.answers[q.correct]}<br>
+            ${q.explanation}`;
+
+    }
+
+    document.getElementById("scoreDisplay").textContent =
+        `Ұпай: ${score}`;
+
+    const nextButton = document.getElementById("nextButton");
+
+    nextButton.classList.remove("hidden");
+
+    nextButton.textContent =
+        currentQuestion === questions.length - 1
+        ? "Нәтижені көру →"
+        : "Келесі сұрақ →";
+
+}
+
+
+// NEXT QUESTION
+
+function nextQuestion() {
+
+    if (!answered) return;
+
+    currentQuestion++;
+
+    showQuestion();
+
+}
+
+
+// FINISH GAME
+
+function finishGame() {
+
+    document.getElementById("game").classList.add("hidden");
+
+    document.getElementById("results").classList.remove("hidden");
+
+    document.getElementById("progress").style.width = "100%";
+
+    document.getElementById("finalScore").textContent =
+        `${score} / 150 ұпай`;
+
+    let message = "";
+
+    if (score >= 130) {
+        message = "Керемет! Сіз қазақтардың рухани мәдениетін өте жақсы білесіз! 🌟";
+    } else if (score >= 100) {
+        message = "Жарайсыз! Сізде қазақтардың рухани мәдениеті туралы жақсы білім бар!";
+    } else if (score >= 60) {
+        message = "Жақсы нәтиже! Білімдеріңізді одан әрі толықтырыңыз!";
+    } else {
+        message = "Қазақтардың рухани мәдениеті туралы көбірек біліп, қайта сынап көріңіз!";
+    }
+
+    document.getElementById("finalMessage").textContent = message;
+
+}
+
+
+// RESTART GAME
+
+function restartGame() {
+
+    currentQuestion = 0;
+    score = 0;
+
+    document.getElementById("results").classList.add("hidden");
+
+    document.getElementById("home").classList.remove("hidden");
+
+}
+
+</script>
+
+</body>
+</html>
